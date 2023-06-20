@@ -1,0 +1,78 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+body {
+  background-color: #01196c;
+  color: white;
+}
+.nav-bar {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 90%;
+  margin: 0 auto;
+  padding: 30px 0 100px 0;
+}
+.brand-name {
+  flex-grow: 1;
+  font-size: 20px;
+  padding-bottom: 5px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+}
+.food-icon {
+  width: 60px;
+}
+.name-input {
+  width: 50%;
+  margin: 0 auto;
+  text-align: center;
+}
+.name-input p {
+  font-size: 20px;
+  margin-bottom: 30px;
+}
+.name-input div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.name-input input {
+  background: whitesmoke;
+  padding: 15px;
+  width: 50%;
+  border: none;
+  border-radius: 50px;
+}
+.name-input input:focus-visible {
+  outline: none;
+}
+.name-input button {
+  padding: 10px 30px;
+  background: inherit;
+  border: 1px solid white;
+  border-radius: 50px;
+  color: white;
+  margin: 0 0 20px 10px;
+}
+
+@media (max-width: 600px) {
+  .name-input {
+    width: 90%;
+  }
+  .name-input p {
+    font-size: 16px;
+    margin-bottom: 20px;
+  }
+  .name-input div {
+    flex-direction: column;
+    gap: 20px;
+  }
+  .name-input input {
+    width: 90%;
+  }
+  .name-input button {
+    width: 40%;
+  }
+}
