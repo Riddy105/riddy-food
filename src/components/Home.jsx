@@ -2,11 +2,11 @@ import React, { useState } from "react";
 import { motion } from "framer-motion";
 
 const inputVariants = {
-  hidden: { opacity: 0, x: "-100vw" },
+  hidden: { opacity: 0, scale: 1.5 },
   animate: {
     opacity: 1,
-    x: 0,
-    transition: { delay: 1, stiffness: 200, type: "spring" },
+    scale: 1,
+    transition: { delay: 2, stiffness: 200, type: "spring" },
   },
 };
 
@@ -25,13 +25,15 @@ const Home = () => {
   return (
     <motion.div
       className="name-input"
-      animate={{ y: 0 }}
-      initial={{ y: "100vh" }}
+      animate={{ x: 0 }}
+      initial={{ x: "100vw" }}
       transition={{
         duration: 1,
+        delay: 1,
         type: "spring",
         stiffness: 200,
         when: "beforeChildren",
+        staggerChildren: 0.2,
       }}
     >
       <p>To serve you better, we will like to know your name</p>
@@ -54,6 +56,7 @@ const Home = () => {
       </div>
       {showName && (
         <motion.p
+          style={{ marginTop: "20px" }}
           initial={{ x: "100vw" }}
           animate={{ x: 0 }}
           transition={{ duration: 1, type: "spring", stiffness: 200 }}
