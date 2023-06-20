@@ -66,6 +66,7 @@ const Nav = () => {
           d="M224 112h256"
         />
       </svg>
+
       <motion.h2
         className="brand-name"
         variants={headerVariants}
