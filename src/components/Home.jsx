@@ -1,5 +1,8 @@
 import React, { useState } from "react";
-import { motion } from "framer-motion";
+import { AnimatePresence, motion } from "framer-motion";
+import { useSelector, useDispatch } from "react-redux";
+import { foodActions } from "../store";
+import { useNavigate } from "react-router-dom";
 
 const inputVariants = {
   hidden: { opacity: 0, scale: 1.5 },
@@ -11,20 +14,18 @@ const inputVariants = {
 };
 
 const Home = () => {
-  const [name, setName] = useState("");
-  const [showName, setShowName] = useState(false);
+  const dispatch = useDispatch();
+  const name = useSelector((state) => state.name);
+  const navigate = useNavigate();
   const changeHandler = (e) => {
-    setShowName(false);
-    setName(e.target.value);
-    if (e.target.value === "") {
-    }
+    dispatch(foodActions.addName(e.target.value));
   };
   const submitHandler = () => {
-    name && setShowName(true);
+    name && navigate("/maincourse");
   };
   return (
     <motion.div
-      className="name-input"
+      className="name-input container"
       animate={{ x: 0 }}
       initial={{ x: "100vw" }}
       transition={{
@@ -33,7 +34,6 @@ const Home = () => {
         type: "spring",
         stiffness: 200,
         when: "beforeChildren",
-        staggerChildren: 0.2,
       }}
     >
       <p>To serve you better, we will like to know your name</p>
@@ -44,6 +44,7 @@ const Home = () => {
           variants={inputVariants}
           initial="hidden"
           animate="animate"
+          value={name}
         />
         <motion.button
           onClick={submitHandler}
@@ -54,16 +55,19 @@ const Home = () => {
           Next
         </motion.button>
       </div>
-      {showName && (
-        <motion.p
-          style={{ marginTop: "20px" }}
-          initial={{ x: "100vw" }}
-          animate={{ x: 0 }}
-          transition={{ duration: 1, type: "spring", stiffness: 200 }}
-        >
-          {`Hi ${name}, welcome😊.`}
-        </motion.p>
-      )}
+      {/* {showName && (
+        <AnimatePresence>
+          <motion.p
+            exit={{ x: "-100vw", transition: { duration: 2 } }}
+            style={{ marginTop: "20px" }}
+            initial={{ x: "100vw" }}
+            animate={{ x: 0 }}
+            transition={{ duration: 1, type: "spring", stiffness: 200 }}
+          >
+            {`Hi ${name}, welcome😊.`}
+          </motion.p>
+        </AnimatePresence>
+      )} */}
     </motion.div>
   );
 };
